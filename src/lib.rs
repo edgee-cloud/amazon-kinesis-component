@@ -437,7 +437,10 @@ mod tests {
             ("aws_access_key".to_string(), "TEST".to_string()),
             ("aws_secret_key".to_string(), "TEST".to_string()),
             ("aws_region".to_string(), "eu-west-1".to_string()),
-            ("kinesis_stream".to_string(), "arn:aws:kinesis:eu-west-1:ABCDEFG:stream/stream-name".to_string()),
+            (
+                "kinesis_stream".to_string(),
+                "arn:aws:kinesis:eu-west-1:ABCDEFG:stream/stream-name".to_string(),
+            ),
         ];
         let result = Component::page(event, settings);
 
