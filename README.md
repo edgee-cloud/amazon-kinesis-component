@@ -34,7 +34,7 @@ settings.kinesis_stream = "YOUR_STREAM_NAME_OR_ARN"
 ## Event Handling
 
 ### Event Mapping
-The component maps Edgee events to S3 objects as follows:
+The component maps Edgee events to Kinesis records as follows:
 
 | Edgee Event | Kinesis record | Description |
 |-------------|----------------|-------------|
@@ -62,7 +62,7 @@ settings.kinesis_partition = "static-partition-key" # Optional, used for all Put
 
 
 ### Event Controls
-Control which events are forwarded to S3:
+Control which events are forwarded to Amazon Kinesis:
 ```toml
 settings.edgee_page_event_enabled = true   # Enable/disable page view tracking
 settings.edgee_track_event_enabled = true  # Enable/disable custom event tracking
