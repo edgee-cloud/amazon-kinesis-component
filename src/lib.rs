@@ -36,13 +36,13 @@ fn send_to_kinesis(edgee_event: Event, settings_dict: Dict) -> Result<EdgeeReque
     // generate full URL, JSON body, and HTTP headers
     let url = kinesis_settings.generate_kinesis_url();
     let body = kinesis_settings.generate_body(record.clone());
-    let sigv4_headers = kinesis_settings.generate_headers(url.clone(), body.clone());
+    let headers = kinesis_settings.generate_headers(url.clone(), body.clone());
 
     Ok(EdgeeRequest {
         method: HttpMethod::Post,
-        url: url,
-        headers: sigv4_headers,
-        body: body,
+        url,
+        headers,
+        body,
         forward_client_headers: false,
     })
 }
