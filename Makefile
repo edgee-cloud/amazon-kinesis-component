@@ -12,10 +12,6 @@ help:
 build: ## Build the wasi component
 	edgee components build
 
-build-no-edgee: ## Build the wasi component
-	cargo build --target wasm32-wasip2 --release
-	cp ./target/wasm32-wasip2/release/amazon_kinesis_component.wasm kinesis.wasm
-
 test: ## Test the component on host platform
 	cargo test --lib
 
