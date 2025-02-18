@@ -11,6 +11,10 @@
 
 <h1 align="center">Amazon Kinesis component for Edgee</h1>
 
+[![Coverage Status](https://coveralls.io/repos/github/edgee-cloud/amazon-kinesis-component/badge.svg?branch=coveralls)](https://coveralls.io/github/edgee-cloud/amazon-kinesis-component?branch=coveralls)
+[![GitHub issues](https://img.shields.io/github/issues/edgee-cloud/amazon-kinesis-component.svg)](https://github.com/edgee-cloud/amazon-kinesis-component/issues)
+[![Edgee Component Registry](https://img.shields.io/badge/Edgee_Component_Registry-Public-green.svg)](https://www.edgee.cloud/edgee/amazon-kinesis-component)
+
 This component enables seamless integration between [Edgee](https://www.edgee.cloud) and [Amazon Kinesis](https://aws.amazon.com/kinesis/), allowing you to collect and forward analytics events to your streaming pipelines.
 
 
