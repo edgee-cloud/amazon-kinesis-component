@@ -1,7 +1,7 @@
 manifest-version = 1
 
 [component]
-name = "amazon-kinesis"
+name = "Amazon Kinesis"
 version = "0.0.1"
 
 category = "data-collection"
