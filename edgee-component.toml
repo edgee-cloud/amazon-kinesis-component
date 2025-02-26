@@ -1,0 +1,47 @@
+manifest-version = 1
+
+[component]
+name = "Amazon Kinesis"
+version = "0.1.0"
+
+category = "data-collection"
+subcategory = "warehouse"
+description = "Amazon Kinesis Edgee component"
+documentation = "https://github.com/edgee-cloud/amazon-kinesis-component"
+repository = "https://github.com/edgee-cloud/amazon-kinesis-component"
+wit-world-version = "0.4.0"
+
+[component.build]
+command = "cargo build --target wasm32-wasip2 --release --target-dir ./target && mv ./target/wasm32-wasip2/release/amazon_kinesis_component.wasm ./kinesis.wasm"
+output_path = "kinesis.wasm"
+
+
+[component.settings.aws_access_key]
+title = "Your AWS Access Key"
+type = "string"
+required = true
+
+[component.settings.aws_secret_key]
+title = "Your AWS Secret Access Key"
+type = "string"
+required = true
+
+[component.settings.aws_session_token]
+title = "Your AWS Session Token (optional)"
+type = "string"
+description = "Useful for tests, not recommended in production because it's short-lived"
+
+[component.settings.aws_region]
+title = "Your AWS Region"
+type = "string"
+required = true
+
+[component.settings.kinesis_stream]
+title = "Your Kinesis Stream name (or ARN)"
+type = "string"
+required = true
+
+[component.settings.kinesis_partition]
+title = "Your Kinesis partition key (optional)"
+type = "string"
+description = "It will be used as partition key for all PutRecord calls"

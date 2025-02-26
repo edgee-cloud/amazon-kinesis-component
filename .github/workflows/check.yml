@@ -1,0 +1,73 @@
+name: Check
+on:
+    push:
+        branches:
+            - main
+    pull_request:
+
+jobs:
+    check:
+        name: cargo check
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+            - uses: dtolnay/rust-toolchain@stable
+              with:
+                  target: wasm32-wasip2 # WebAssembly target
+                  components: rustfmt
+            - run: cargo check
+    fmt:
+        name: cargo fmt
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+            - uses: dtolnay/rust-toolchain@stable
+              with:
+                  components: rustfmt
+            - uses: actions-rust-lang/rustfmt@v1
+    clippy:
+        name: clippy
+        runs-on: ubuntu-latest
+        permissions:
+            checks: write
+        steps:
+            - uses: actions/checkout@v4
+            - uses: dtolnay/rust-toolchain@stable
+              with:
+                  components: clippy
+            - uses: wearerequired/lint-action@master
+              with:
+                  clippy: true
+    build:
+        name: cargo build
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+            - uses: dtolnay/rust-toolchain@stable
+              with:
+                  target: wasm32-wasip2 # WebAssembly target
+            - uses: edgee-cloud/install-edgee-cli@v0.1.0
+            - run: edgee component build
+            - name: Verify .wasm file exists
+              run: |
+                if [ ! -f "./kinesis.wasm" ]; then
+                    echo "❌ Error: kinesis.wasm not found" >&2
+                    exit 1
+                fi
+    test:
+        name: cargo test
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+            - uses: dtolnay/rust-toolchain@stable
+            - run: make test
+
+    coverage:
+        name: coverage & coveralls
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+            - uses: dtolnay/rust-toolchain@stable
+            - uses: taiki-e/install-action@cargo-llvm-cov
+            - run: make test.coverage.lcov
+            - uses: coverallsapp/github-action@v2
