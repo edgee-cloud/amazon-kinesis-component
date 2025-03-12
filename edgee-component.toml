@@ -2,15 +2,22 @@ manifest-version = 1
 
 [component]
 name = "Amazon Kinesis"
-version = "0.1.1"
+version = "1.0.0"
 
 category = "data-collection"
 subcategory = "warehouse"
-description = "Amazon Kinesis Edgee component"
-documentation = "https://github.com/edgee-cloud/amazon-kinesis-component"
+documentation = "https://www.edgee.cloud/docs/components/data-collection/amazon-kinesis"
 repository = "https://github.com/edgee-cloud/amazon-kinesis-component"
 icon-path = "kinesis.png"
-wit-world-version = "0.5.0"
+wit-version = "1.0.0"
+language = "Rust"
+description = '''
+This component enables seamless integration between [Edgee](https://www.edgee.cloud)
+and [Amazon Kinesis](https://aws.amazon.com/kinesis/),
+allowing you to collect and forward analytics events to your streaming pipelines. 
+
+All Kinesis records contain a full JSON dump of the incoming event.
+'''
 
 [component.build]
 command = "cargo build --target wasm32-wasip2 --release --target-dir ./target && mv ./target/wasm32-wasip2/release/amazon_kinesis_component.wasm ./kinesis.wasm"
