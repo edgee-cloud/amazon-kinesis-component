@@ -4,7 +4,7 @@ mod kinesis_payload;
 
 wit_bindgen::generate!({
     world: "data-collection",
-    path: "wit",
+    path: ".edgee/wit",
     additional_derives: [serde::Serialize],
     generate_all,
 });
@@ -80,7 +80,7 @@ mod tests {
                 locale,
                 timezone: "CET".to_string(),
                 user_agent: "Chrome".to_string(),
-                user_agent_architecture: "fuck knows".to_string(),
+                user_agent_architecture: "x86".to_string(),
                 user_agent_bitness: "64".to_string(),
                 user_agent_full_version_list: "abc".to_string(),
                 user_agent_version_list: "abc".to_string(),
