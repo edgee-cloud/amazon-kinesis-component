@@ -4,7 +4,7 @@ mod kinesis_payload;
 
 wit_bindgen::generate!({
     world: "data-collection",
-    path: "wit",
+    path: ".edgee/wit",
     additional_derives: [serde::Serialize],
     generate_all,
 });
