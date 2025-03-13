@@ -2,7 +2,7 @@ manifest-version = 1
 
 [component]
 name = "Amazon Kinesis"
-version = "1.0.0"
+version = "1.1.0"
 
 category = "data-collection"
 subcategory = "warehouse"
@@ -28,11 +28,13 @@ output_path = "kinesis.wasm"
 title = "Your AWS Access Key"
 type = "string"
 required = true
+description = "It corresponds to aws_access_key_id in your credentials file."
 
 [component.settings.aws_secret_key]
 title = "Your AWS Secret Access Key"
 type = "string"
 required = true
+description = "It corresponds to aws_secret_access_key in your credentials file."
 
 [component.settings.aws_session_token]
 title = "Your AWS Session Token (optional)"
@@ -43,13 +45,15 @@ description = "Useful for tests, not recommended in production because it's shor
 title = "Your AWS Region"
 type = "string"
 required = true
+description = "The AWS region short name, such as us-east-1 or eu-west-1."
 
 [component.settings.kinesis_stream]
 title = "Your Kinesis Stream name (or ARN)"
 type = "string"
 required = true
+description = "Either the stream name or full ARN. Make sure to avoid leading or ending spaces."
 
 [component.settings.kinesis_partition]
 title = "Your Kinesis partition key (optional)"
 type = "string"
-description = "It will be used as partition key for all PutRecord calls"
+description = "If provided, it's used as partition key for all PutRecord calls."
