@@ -5,6 +5,9 @@ on:
             - main
     pull_request:
 
+env:
+  EDGEE_API_TOKEN: ${{ secrets.EDGEE_API_TOKEN }}
+
 jobs:
     check:
         name: cargo check
@@ -15,9 +18,10 @@ jobs:
               with:
                   target: wasm32-wasip2 # WebAssembly target
                   components: rustfmt
-            - uses: edgee-cloud/install-edgee-cli@v0.1.0
-            - run: edgee component build
+            - uses: edgee-cloud/install-edgee-cli@v0.2.0
+            - run: edgee component wit
             - run: cargo check
+
     fmt:
         name: cargo fmt
         runs-on: ubuntu-latest
@@ -26,9 +30,10 @@ jobs:
             - uses: dtolnay/rust-toolchain@stable
               with:
                   components: rustfmt
-            - uses: edgee-cloud/install-edgee-cli@v0.1.0
-            - run: edgee component build
+            - uses: edgee-cloud/install-edgee-cli@v0.2.0
+            - run: edgee component wit
             - uses: actions-rust-lang/rustfmt@v1
+
     clippy:
         name: clippy
         runs-on: ubuntu-latest
@@ -39,11 +44,12 @@ jobs:
             - uses: dtolnay/rust-toolchain@stable
               with:
                   components: clippy
-            - uses: edgee-cloud/install-edgee-cli@v0.1.0
-            - run: edgee component build
+            - uses: edgee-cloud/install-edgee-cli@v0.2.0
+            - run: edgee component wit
             - uses: wearerequired/lint-action@master
               with:
                   clippy: true
+
     build:
         name: cargo build
         runs-on: ubuntu-latest
@@ -52,7 +58,7 @@ jobs:
             - uses: dtolnay/rust-toolchain@stable
               with:
                   target: wasm32-wasip2 # WebAssembly target
-            - uses: edgee-cloud/install-edgee-cli@v0.1.0
+            - uses: edgee-cloud/install-edgee-cli@v0.2.0
             - run: edgee component build
             - name: Verify .wasm file exists
               run: |
@@ -60,14 +66,15 @@ jobs:
                     echo "❌ Error: kinesis.wasm not found" >&2
                     exit 1
                 fi
+
     test:
         name: cargo test
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v4
             - uses: dtolnay/rust-toolchain@stable
-            - uses: edgee-cloud/install-edgee-cli@v0.1.0
-            - run: edgee component build
+            - uses: edgee-cloud/install-edgee-cli@v0.2.0
+            - run: edgee component wit
             - run: make test
 
     coverage:
@@ -77,7 +84,7 @@ jobs:
             - uses: actions/checkout@v4
             - uses: dtolnay/rust-toolchain@stable
             - uses: taiki-e/install-action@cargo-llvm-cov
-            - uses: edgee-cloud/install-edgee-cli@v0.1.0
-            - run: edgee component build
+            - uses: edgee-cloud/install-edgee-cli@v0.2.0
+            - run: edgee component wit
             - run: make test.coverage.lcov
             - uses: coverallsapp/github-action@v2
