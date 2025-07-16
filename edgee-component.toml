@@ -20,7 +20,7 @@ All Kinesis records contain a full JSON dump of the incoming event.
 '''
 
 [component.build]
-command = "cargo build --target wasm32-wasip2 --release --target-dir ./target && mv ./target/wasm32-wasip2/release/amazon_kinesis_component.wasm ./kinesis.wasm"
+command = "cargo build --target wasm32-wasip2 --release --target-dir ./target && rm -f ./kinesis.wasm && mv ./target/wasm32-wasip2/release/amazon_kinesis_component.wasm ./kinesis.wasm"
 output_path = "kinesis.wasm"
 
 
